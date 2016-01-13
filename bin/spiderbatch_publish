@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'spiderbatch'
+
+# You throw STDIN to queue X
+# echo blabla | spiderbatch_publish <some_queue_name>
+
+# FIXME: more syntax check
+SpiderBatch::CLI.new.publish_stdin ARGV.first
+

@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'spiderbatch'
+
+# FIXME: more syntax check
+# Runs a single queue daemon for now.
+SpiderBatch::Node.new.single_queue_daemon ARGV.first
+
