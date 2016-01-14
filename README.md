@@ -36,34 +36,39 @@ Server
 ------
 
 
-/etc/spiderbatch/spiderbatch.ini
+/etc/spiderbatch.json
 
-```
 # The server section is only necessary if you run the server. You can also choose to only run the CLI to publish.
-[server]
-port = 9000
-bind = 127.0.0.1
-lowrel_redis_host = 127.0.0.1
-lowrel_redis_port = 6379
+```
+{
+  "server":{
+    "port": 9000,
+    "bind": "127.0.0.1",
+    "lowrel_redis_host": "127.0.0.1",
+    "lowrel_redis_port": "6379"
+  },
 
-[some_queue_name]
-reliability = (low/high). Default: low (only implemented low for now)
-
+  "some_queue_name": {
+    "reliability":"low" //Default: low (only implemented low for now)
+  }
+}
+```
 #TODO
 #authentication for local clients, and for the nodes.
-```
 
 Node
 ----
 
-/etc/spiderbatch/spiderbatch.ini
+/etc/spiderbatch.json
 ```
-[some_queue_name]
-server = <name>
-reliability = (low/high). Default: low (only implemented low for now)
-command = <some command>
-
+{
+  "some_queue_name": {
+    "server":"fqdn or ip",
+    "reliability":"low",
+    "command":"some command"
+  }
+}
+```
 #TODO
 #user = <some user it will suid to>
 #group = <some group it will suid to>
-```

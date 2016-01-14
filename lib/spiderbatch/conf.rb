@@ -1,4 +1,4 @@
-require 'inifile'
+require 'json'
 require 'singleton'
 
 module SpiderBatch
@@ -13,12 +13,12 @@ module SpiderBatch
     def initialize
       # FIXME: add options to try manually set places...
       cfile_try = [
-        'spiderbatch.ini',
-        '/opt/spiderbatch/spiderbatch.ini',
-        '/etc/spiderbatch/spiderbatch.ini',
-        '/etc/spiderbatch.ini',
+        'spiderbatch.json',
+        '/opt/spiderbatch/spiderbatch.json',
+        '/etc/spiderbatch/spiderbatch.json',
+        '/etc/spiderbatch.json',
       ]
-      cfile_try.insert(1,File.expand_path('~/spiderbatch.ini')) if ENV.has_key?'HOME'
+      cfile_try.insert(1,File.expand_path('~/spiderbatch.json')) if ENV.has_key?'HOME'
 
 
       cfile = false
@@ -36,7 +36,7 @@ module SpiderBatch
 
     # -------------------------------------------------------------------------
     def reload
-      @conf = IniFile.load(@cfile).to_h
+      @conf = JSON.parse(File.read(@cfile))
     end
 
   end
